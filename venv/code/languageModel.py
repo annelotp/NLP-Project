@@ -10,36 +10,51 @@ class languageModel:
         self.trigramCounts = collections.defaultdict(lambda: 0)
         self.total = 0
         self.train(corpus)
+        #self.printTrigram()
 
-    def train(self, sentences):
+    def train(self, corpus):
         """ Takes a corpus and trains your language model.
             Compute any counts or other corpus statistics in this function.
         """
-        for sentence in sentences:
+        for sentence in corpus.sentences:
             i = 0
-            while i < len(sentence.data):
-                x = sentence.data[i].word
+            while i < len(sentence):
+                x = sentence[i]
                 self.unigramCounts[x] = self.unigramCounts[x] + 1
                 if i > 0:
-                    y = sentence.data[i - 1].word
-                    self.bigramCounts[x, y] = self.bigramCounts[x, y] + 1
+                    y = sentence[i - 1]
+                    self.bigramCounts[y,x] = self.bigramCounts[y,x] + 1
                 if i > 1:
-                    z = sentence.data[i - 2].word
-                    self.trigramCounts[x, y, z] = self.trigramCounts[x, y, z] + 1
+                    z = sentence[i - 2]
+                    self.trigramCounts[z,y,x] = self.trigramCounts[z,y,x] + 1
                 self.total += 1
                 i = i + 1
 
     def predict(self, bigram):
-        maximumCount = -1
+        maximumCount = 0
         bestWord = 'anecdote'
-        for i in range(10):
-            print(self.trigramCounts.keys()[i])
         for i in self.unigramCounts.keys():
             if self.trigramCounts[bigram[0],bigram[1],i] > maximumCount:
                 maximumCount = self.trigramCounts[bigram[0],bigram[1],i]
                 bestWord = i
+                #print(maximumCount)
+                #print("best word", i)
         return bestWord
 
+    def endofSentence(self):
+        maximumCount = 0
+        bestWord = 'anecdote'
+        for i in self.unigramCounts.keys():
+            if self.bigramCounts["<s>", i] > maximumCount:
+                maximumCount = self.bigramCounts["<s>", i]
+                bestWord = i
+                #print(maximumCount)
+                #print("best word", i)
+        return bestWord
+
+    def printTrigram(self):
+        for i in range(100):
+            print(self.trigramCounts.keys()[i])
 
     def score(self, sentence):
         """ Takes a list of strings as argument and returns the log-probability of the
