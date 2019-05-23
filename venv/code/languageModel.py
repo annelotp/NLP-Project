@@ -11,11 +11,11 @@ class languageModel:
         self.total = 0
         self.train(corpus)
 
-    def train(self, corpus):
+    def train(self, sentences):
         """ Takes a corpus and trains your language model.
             Compute any counts or other corpus statistics in this function.
         """
-        for sentence in corpus.corpus:
+        for sentence in sentences:
             i = 0
             while i < len(sentence.data):
                 x = sentence.data[i].word
