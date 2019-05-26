@@ -1,4 +1,7 @@
+from __future__ import division
 import math, collections
+from random import seed
+from random import random
 
 
 class languageModel:
@@ -8,6 +11,7 @@ class languageModel:
         self.unigramCounts = collections.defaultdict(lambda: 0)
         self.bigramCounts = collections.defaultdict(lambda: 0)
         self.trigramCounts = collections.defaultdict(lambda: 0)
+        self.startProb = collections.defaultdict(lambda: 0);
         self.total = 0
         self.train(corpus)
         #self.printTrigram()
@@ -33,21 +37,54 @@ class languageModel:
     def predict(self, bigram):
         maximumCount = 0
         bestWord = 'anecdote'
+        amountBigram = self.bigramCounts[bigram[0], bigram[1]]
         for i in self.unigramCounts.keys():
-            if self.trigramCounts[bigram[0],bigram[1],i] > maximumCount:
-                maximumCount = self.trigramCounts[bigram[0],bigram[1],i]
+            self.startProb[i] = (self.trigramCounts[bigram[0], bigram[1], i] / amountBigram)
+        randomNum = random()
+        print("random:", randomNum)
+        for i in self.startProb:
+            # print("random:", randomNum)
+            # print("word: ", i, self.startProb[i])
+            randomNum = randomNum - self.startProb[i];
+            # print("random after:", randomNum)
+            if randomNum <= 0:
                 bestWord = i
+                break
+
+
+        #for i in self.unigramCounts.keys():
+          #  if self.trigramCounts[bigram[0],bigram[1],i] > maximumCount:
+           #     maximumCount = self.trigramCounts[bigram[0],bigram[1],i]
+           #     bestWord = i
                 #print(maximumCount)
                 #print("best word", i)
         return bestWord
 
+    @property
     def endofSentence(self):
         maximumCount = 0
         bestWord = 'anecdote'
+        totalSentences = self.unigramCounts["<s>"]
         for i in self.unigramCounts.keys():
-            if self.bigramCounts["<s>", i] > maximumCount:
-                maximumCount = self.bigramCounts["<s>", i]
+            self.startProb[i] = (self.bigramCounts["<s>", i]/totalSentences)
+            #if self.startProb[i] > 0:
+                #print("Probability: ", i, self.startProb[i])
+        randomNum = random()
+        print("random:", randomNum)
+        for i in self.startProb:
+           # print("random:", randomNum)
+            #print("word: ", i, self.startProb[i])
+            randomNum = randomNum - self.startProb[i];
+            #print("random after:", randomNum)
+            if randomNum <= 0:
                 bestWord = i
+                break
+
+
+        #for i in self.unigramCounts.keys():
+        #    if self.bigramCounts["<s>", i] > maximumCount:
+        #        maximumCount = self.bigramCounts["<s>", i]
+         #       bestWord = i
                 #print(maximumCount)
                 #print("best word", i)
         return bestWord

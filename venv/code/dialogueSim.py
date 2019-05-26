@@ -28,7 +28,7 @@ def main():
     print(bigram[0], bigram[1])
     for i in range(100):
         if "</s>" in bigram:
-            nextword = lm.endofSentence()
+            nextword = lm.endofSentence
             print(nextword)
             bigram = ["<s>", nextword]
         else:
