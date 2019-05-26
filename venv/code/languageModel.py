@@ -5,7 +5,7 @@ class languageModel:
 
     def __init__(self, corpus):
         """Initialize your data structures in the constructor."""
-        self.unigramCounts = collections.defaultdict(lambda: 0)
+        self.unigramCounts = collections.defaultdict(lambda: 1)
         self.bigramCounts = collections.defaultdict(lambda: 0)
         self.trigramCounts = collections.defaultdict(lambda: 0)
         self.total = 0
@@ -32,14 +32,27 @@ class languageModel:
 
     def predict(self, bigram):
         maximumCount = 0
+        maxbi = 0
+        maxuni = 0
         bestWord = 'anecdote'
         for i in self.unigramCounts.keys():
-            if self.trigramCounts[bigram[0],bigram[1],i] > maximumCount:
+            if self.trigramCounts[bigram[0],bigram[1],i] > maximumCount and self.trigramCounts[bigram[0],bigram[1],i] > 0:
                 maximumCount = self.trigramCounts[bigram[0],bigram[1],i]
                 bestWord = i
                 #print(maximumCount)
                 #print("best word", i)
-        return bestWord
+            elif self.bigramCounts[bigram[1],i] > 0 and self.bigramCounts[bigram[1],i] > maxbi and maximumCount == 0:
+                maxbi = self.bigramCounts[bigram[1], i]
+                bestWord = i
+            elif self.unigramCounts[i] > maximumCount and maximumCount == 0 and maxbi == 0:
+                maxuni = self.unigramCounts[bigram[1], i]
+                bestWord = i
+        if maximumCount > 0:
+            return bestWord
+        elif maxbi > 0:
+            return maxbi
+        else:
+            return maxuni
 
     def endofSentence(self):
         maximumCount = 0

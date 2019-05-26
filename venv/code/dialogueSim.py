@@ -24,9 +24,9 @@ def main():
 
     lm = languageModel(corp)
     #no capitals!!!
-    bigram = ['i', 'love']
+    bigram = ['we', 'have']
     print(bigram[0], bigram[1])
-    for i in range(100):
+    for i in range(15):
         if "</s>" in bigram:
             nextword = lm.endofSentence()
             print(nextword)
