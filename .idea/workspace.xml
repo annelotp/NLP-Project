@@ -17,8 +17,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/code/languageModel.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="690">
               <caret line="46" column="90" selection-start-line="46" selection-start-column="90" selection-end-line="46" selection-end-column="90" />
+=======
+            <state relative-caret-position="80">
+              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
             </state>
           </provider>
         </entry>
@@ -35,8 +43,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/code/Sentence.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="75">
               <caret line="5" column="16" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+=======
+            <state relative-caret-position="195">
+              <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
             </state>
           </provider>
         </entry>
@@ -44,10 +57,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/code/BigCorpus.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="315">
               <caret line="21" column="31" lean-forward="true" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
+=======
+            <state relative-caret-position="190">
+              <caret line="47" column="52" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
               </folding>
             </state>
           </provider>
@@ -85,14 +105,19 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/venv/code/corpus.py" />
-        <option value="$PROJECT_DIR$/venv/code/languageModel.py" />
         <option value="$PROJECT_DIR$/venv/code/dialogueSim.py" />
+        <option value="$PROJECT_DIR$/venv/code/languageModel.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+<<<<<<< HEAD
     <option name="x" value="18" />
     <option name="y" value="56" />
+=======
+    <option name="x" value="14" />
+    <option name="y" value="23" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
     <option name="width" value="1400" />
     <option name="height" value="790" />
   </component>
@@ -101,8 +126,34 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="ProjectPane" />
       <pane id="Scope" />
+=======
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="NLPproject2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NLPproject2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NLPproject2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NLPproject2" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NLPproject2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NLPproject2" type="462c0819:PsiDirectoryNode" />
+              <item name="venv" type="462c0819:PsiDirectoryNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -163,7 +214,11 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="18" y="56" width="1400" height="790" extended-state="0" />
+=======
+    <frame x="14" y="23" width="1400" height="790" extended-state="0" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24945612" />
@@ -171,15 +226,24 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" weight="0.2191977" />
+=======
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.491404" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Python Console" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -205,6 +269,7 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/venv/code/corpus.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -236,6 +301,8 @@
     <entry file="file://$PROJECT_DIR$/venv/code/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+=======
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
     <entry file="file://$PROJECT_DIR$/venv/code/BigCorpus.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -246,17 +313,49 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/venv/code/dialogueSim.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/venv/code/Sentence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/code/corpus.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/code/languageModel.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="690">
           <caret line="46" column="90" selection-start-line="46" selection-start-column="90" selection-end-line="46" selection-end-column="90" />
+=======
+        <state relative-caret-position="190">
+          <caret line="47" column="52" selection-start-line="47" selection-start-column="52" selection-end-line="47" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/code/dialogueSim.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+>>>>>>> 966135157b1a5fd538ef5391487661256ecf8907
         </state>
       </provider>
     </entry>
