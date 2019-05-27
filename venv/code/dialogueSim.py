@@ -24,14 +24,14 @@ def main():
 
     lm = languageModel(corp)
 
-    methods = ['greedy', 'sampling', 'beamSearch']
-    #methods = ['beamSearch']
+    #methods = ['greedy', 'sampling', 'beamSearch']
+    methods = ['beamSearch']
     for method in methods:
         print("Method: ", method)
         conversation = []
         sentence = []
         #no capital letters!
-        fourgram = ['i', 'love', 'you', 'and']
+        fourgram = ['how', 'are', 'you', 'doing']
         for i in fourgram:
             sentence.append(i)
         print(sentence)
@@ -41,16 +41,16 @@ def main():
                 n = n+1
                 conversation.append(sentence)
                 sentence = []
-                nextword = lm.score(fourgram, method)
+                nextword = lm.endofSentence
                 sentence.append(nextword)
-                print("New senctence: ", nextword)
+                #print("New senctence: ", nextword)
                 #fourgram = [fourgram[3], "</s>", "<s>", nextword]
                 fourgram = [fourgram[1], fourgram[2], fourgram[3], nextword]
 
             else:
                 nextword = lm.score(fourgram, method)
                 sentence.append(nextword)
-                print(nextword)
+                #print(nextword)
                 fourgram = [fourgram[1], fourgram[2],fourgram[3],nextword]
         conversation.append(sentence)
         #print("hi there we should print the full convo now", conversation.__len__())
