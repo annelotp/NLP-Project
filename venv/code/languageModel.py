@@ -52,8 +52,8 @@ class languageModel:
                 i = i + 1
         print("train finished")
 
-    def predict(self, fourgram):
-        print("predict started")
+    def score(self, fourgram, method):
+        #print("predict started")
         maximumCount = 0
         maxbi = 0
         maxuni = 0
@@ -64,52 +64,88 @@ class languageModel:
         amountUnigram = max(self.unigramCounts[fourgram[3]],1)
 
         for i in self.unigramCounts.keys():
+            if i == '<\s>':
+                print("Lalalalal", i)
             self.scoreFive[i] = (self.fivegramCounts[fourgram[0], fourgram[1], fourgram[2], fourgram[3], i] / amountFourgram)
             self.scoreFour[i] = (self.fourgramCounts[fourgram[1], fourgram[2], fourgram[3], i] / amountTrigram)
             self.scoreThree[i] = (self.trigramCounts[fourgram[2], fourgram[3], i] / amountBigram)
             self.scoreTwo[i] = (self.bigramCounts[fourgram[3], i] / amountUnigram)
             self.scoreOne[i] = (self.unigramCounts[i]/self.total)
             self.probability[i] = 0.4*self.scoreFive[i] + 0.3*self.scoreFour[i] + 0.2*self.scoreThree[i] + 0.07*self.scoreTwo[i] +0.03*self.scoreOne[i]
-        #print("random:", randomNum)
-        totalValue = 0
+        if method == 'greedy':
+            return self.greedy()
+        elif method == 'sampling':
+            return self.sampling()
+        else:
+            return self.beamSearch(fourgram)
+
+    def greedy(self):
         maximumCount = 0
         for i in self.probability:
-            #totalValue = totalValue + self.probability[i]
+            if i == '<\s>':
+                print("GAGAGAGAGAGA", i)
             if self.probability[i] > maximumCount:
                 maximumCount = self.probability[i]
                 bestWord = i
-       # randomNum = random()*totalValue
-
-
-        # for i in self.probability:
-        #     # print("random:", randomNum)
-        #     #print("word: ", i, self.probability[i])
-        #     randomNum = randomNum - self.probability[i];
-        #     #print("random after:", randomNum)
-        #     if randomNum <= 0:
-        #         bestWord = i
-        #         break
-        print("predict finished")
         return bestWord
 
-        #for i in self.unigramCounts.keys():
-          #  if self.trigramCounts[bigram[0],bigram[1],i] > maximumCount:
-           #     maximumCount = self.trigramCounts[bigram[0],bigram[1],i]
-           #     bestWord = i
-                #print(maximumCount)
-                #print("best word", i)
-           # elif self.bigramCounts[bigram[1],i] > 0 and self.bigramCounts[bigram[1],i] > maxbi and maximumCount == 0:
-           #     maxbi = self.bigramCounts[bigram[1], i]
-           #     bestWord = i
-           # elif self.unigramCounts[i] > maximumCount and maximumCount == 0 and maxbi == 0:
-           #     maxuni = self.unigramCounts[bigram[1], i]
-            #    bestWord = i
-       # if maximumCount > 0:
-       #     return bestWord
-       # elif maxbi > 0:
-       #     return maxbi
-       # else:
-        #    return maxuni
+    def sampling(self):
+        totalValue = 0
+        for i in self.probability:
+            totalValue = totalValue + self.probability[i]
+        randomNum = random()*totalValue
+        for i in self.probability:
+            # print("random:", randomNum)
+            #print("word: ", i, self.probability[i])
+            randomNum = randomNum - self.probability[i];
+            if randomNum <= 0:
+                bestWord = i
+                break
+        return bestWord
+
+    def beamSearch(self, fourgram):
+        bestWords = ['anecdote', 'anecdote', 'anecdote']
+        phrase1 = [' ', ' ']
+        phrase2 = [' ', ' ']
+        phrase3 = [' ', ' ']
+        scores=[0,0,0]
+        for i in self.probability:
+            if i == '<\s>':
+                print("Yayayaya", i)
+            if self.probability[i] > self.probability[bestWords[2]]:
+                if self.probability[i] > self.probability[bestWords[1]]:
+                    if self.probability[i] > self.probability[bestWords[0]]:
+                        bestWords[1] = bestWords[0]
+                        bestWords[2] = bestWords[1]
+                        bestWords[0] = i
+                    else:
+                        bestWords[2] = bestWords[1]
+                        bestWords[1] = i
+                else:
+                    bestWords[2] = i
+        #evaluate first word
+        phrase1[0] = self.score([fourgram[1], fourgram[2], fourgram[3], bestWords[0]], 'greedy')
+        phrase1[1] = self.score([fourgram[2], fourgram[3], bestWords[0], phrase1[0]], 'greedy')
+
+        # evaluate second word
+        phrase2[0] = self.score([fourgram[1], fourgram[2], fourgram[3], bestWords[1]], 'greedy')
+        phrase2[1] = self.score([fourgram[2], fourgram[3], bestWords[1], phrase2[0]], 'greedy')
+
+        # evaluate first word
+        phrase3[0] = self.score( [fourgram[1], fourgram[2], fourgram[3], bestWords[2]], 'greedy')
+        phrase3[1] = self.score( [fourgram[2], fourgram[3], bestWords[2], phrase3[0]], 'greedy')
+
+        scores[0] = 3*self.fivegramCounts[fourgram[1], fourgram[2], fourgram[3], bestWords[0], phrase1[0]] + 3*self.fivegramCounts[fourgram[2], fourgram[3], bestWords[0], phrase1[0], phrase1[1]] + 2*self.fourgramCounts[fourgram[2], fourgram[3], bestWords[0], phrase1[0]] + 2*self.fourgramCounts[fourgram[3], bestWords[0], phrase1[0], phrase1[1]] + self.trigramCounts[ fourgram[3], bestWords[0], phrase1[0]] + self.trigramCounts[bestWords[0], phrase1[0], phrase1[1]]
+        scores[1] = 3*self.fivegramCounts[fourgram[1], fourgram[2], fourgram[3], bestWords[1], phrase2[0]] + 3*self.fivegramCounts[fourgram[2], fourgram[3], bestWords[1], phrase2[0], phrase2[1]] + 2*self.fourgramCounts[fourgram[2], fourgram[3], bestWords[1], phrase2[0]] + 2*self.fourgramCounts[fourgram[3], bestWords[1], phrase2[0], phrase2[1]] + self.trigramCounts[ fourgram[3], bestWords[1], phrase2[0]] + self.trigramCounts[bestWords[1], phrase2[0], phrase2[1]]
+        scores[2] = 3*self.fivegramCounts[fourgram[1], fourgram[2], fourgram[3], bestWords[2], phrase3[0]] + 3*self.fivegramCounts[fourgram[2], fourgram[3], bestWords[2], phrase3[0], phrase3[1]] + 2*self.fourgramCounts[fourgram[2], fourgram[3], bestWords[2], phrase3[0]] + 2*self.fourgramCounts[fourgram[3], bestWords[2], phrase3[0], phrase3[1]] + self.trigramCounts[ fourgram[3], bestWords[2], phrase3[0]] + self.trigramCounts[bestWords[2], phrase3[0], phrase3[1]]
+
+        maximum = max(scores[0],scores[1],scores[2])
+
+        if maximum == scores[0]:
+            return bestWords[0]
+        elif maximum == scores[1]:
+            return bestWords[1]
+        else: return bestWords[2]
 
     @property
     def endofSentence(self):
