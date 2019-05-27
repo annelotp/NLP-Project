@@ -10,7 +10,7 @@ class dialogueSim:
         self.data = data
 
 def main():
-
+    print("main started")
     with open('../data/movie-dialog-corpus/movie_lines.tsv') as tsvfile:
         reader = csv.reader(tsvfile, delimiter='\t')
         dialogues = []
@@ -24,18 +24,38 @@ def main():
 
     lm = languageModel(corp)
     #no capitals!!!
-    bigram = ['we', 'have']
-    print(bigram[0], bigram[1])
-    for i in range(15):
-        if "</s>" in bigram:
+    conversation = []
+    sentence = []
+    fourgram = ['i', 'love', 'you', 'and']
+    for i in fourgram:
+        sentence.append(i)
+    for i in range(200):
+        if fourgram[3] == "</s>" :
+            conversation.append(sentence)
+            sentence = []
             nextword = lm.endofSentence
-            print(nextword)
-            bigram = ["<s>", nextword]
+            sentence.append(nextword)
+            #print("New senctence: ", nextword)
+            fourgram = [fourgram[3], "</s>", "<s>", nextword]
         else:
-            nextword = lm.predict(bigram)
-            print(nextword)
-            bigram = [bigram[1], nextword]
+            nextword = lm.predict(fourgram)
+            sentence.append(nextword)
+           # print(nextword)
+            fourgram = [fourgram[1], fourgram[2],fourgram[3],nextword]
             #print(bigram[0], bigram[1])
+
+    speaker = ["Speaker 1:", "Speaker 2:"]
+    for i,sent in enumerate(conversation):
+        speak(speaker[i%2], sent)
+    print("finished main")
+    return
+
+def speak(speaker, sentence):
+    ("speak started")
+    sentence.insert(0,speaker)
+    text= " ".join(sentence)
+    ("finished speak")
+    return text
 
 if __name__ == "__main__":
     main()
