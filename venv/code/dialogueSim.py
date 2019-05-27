@@ -31,26 +31,31 @@ def main():
         conversation = []
         sentence = []
         #no capital letters!
-        fourgram = ['how', 'are', 'you', 'doing']
+        fourgram = ['i', 'wonder', 'how', 'the']
         for i in fourgram:
             sentence.append(i)
         print(sentence)
         n = 1
-        while n < 10:
+        while n < 6:
             if fourgram[3] == "</s>" :
                 n = n+1
                 conversation.append(sentence)
                 sentence = []
                 nextword = lm.endofSentence
                 sentence.append(nextword)
-                #print("New senctence: ", nextword)
+                print("New senctence: ", nextword)
                 #fourgram = [fourgram[3], "</s>", "<s>", nextword]
                 fourgram = [fourgram[1], fourgram[2], fourgram[3], nextword]
 
             else:
-                nextword = lm.score(fourgram, method)
+                if method == 'greedy':
+                     nextword = lm.greedy(lm.score(fourgram))
+                elif method == 'sampling':
+                    nextword = lm.sampling(lm.score(fourgram))
+                else:
+                    nextword = lm.beamSearch(fourgram, lm.score(fourgram))
                 sentence.append(nextword)
-                #print(nextword)
+                print(nextword)
                 fourgram = [fourgram[1], fourgram[2],fourgram[3],nextword]
         conversation.append(sentence)
         #print("hi there we should print the full convo now", conversation.__len__())
