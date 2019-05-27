@@ -1,13 +1,11 @@
 from __future__ import division
 import math, collections
-from random import seed
 from random import random
 
 
 class languageModel:
 
     def __init__(self, corpus):
-        """Initialize your data structures in the constructor."""
         self.unigramCounts = collections.defaultdict(lambda: 0)
         self.bigramCounts = collections.defaultdict(lambda: 0)
         self.trigramCounts = collections.defaultdict(lambda: 0)
@@ -22,12 +20,8 @@ class languageModel:
 
         self.total = 0
         self.train(corpus)
-        #self.printTrigram()
 
     def train(self, corpus):
-        """ Takes a corpus and trains your language model.
-            Compute any counts or other corpus statistics in this function.
-        """
         print("train started")
         for sentence in corpus.sentences:
             i = 0
